@@ -4,7 +4,7 @@ Module that calculates the fewest number of operations
 """
 
 
-def minOperations(n):
+def minOperations(n: int) -> int:
     """
     returns min operations to get n Hs
     """
