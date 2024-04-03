@@ -1,4 +1,4 @@
-#!/usr/python3
+#!/usr/bin/python3
 """
 module for determining if dataset is a valid utf-8 encording
 """
