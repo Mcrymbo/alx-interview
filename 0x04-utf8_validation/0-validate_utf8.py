@@ -8,12 +8,26 @@ def validUTF8(data):
     """
     function that checks if a dataset is a valid utf-8 encorded
     """
-    try:
-        for num in data:
-            if num < 0 or num > 255:
+    n_bytes = 0
+    # Mask to check if the most significant bit is set or not
+    mask1 = 1 << 7
+
+    # Mask to check if the second most significant bit is set or not
+    mask2 = 1 << 6
+    for num in data:
+        mask = 1 << 7
+        if n_bytes == 0:
+            while mask & num:
+                n_bytes += 1
+                mask = mask >> 1
+
+            if n_bytes == 0:
+                continue
+
+            if n_bytes == 1 or n_bytes > 4:
                 return False
-        byte_data = bytes(data)
-        byte_data.decode('utf-8')
-        return True
-    except UnicodeDecodeError:
-        return False
+        else:
+            if not (num & mask1 and not (num & mask2)):
+                return False
+        n_bytes -= 1
+    return n_bytes == 0
