@@ -4,7 +4,7 @@
 
 def makeChange(coins, total):
     """function for calculating number of coins using
-    dynamic programming algorithm"""
+    dynamic programming algorithm """
     temp_value = 0
     coins.sort(reverse=True)
 
